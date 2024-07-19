@@ -1,0 +1,18 @@
+Write a SQL query that orders items by price. 
+SELECT item_name, price
+FROM superstore
+ORDER BY price desc;
+
+Write a SQL query that will show a stattstc about the item price. 
+SELECT AVG (price)
+FROM superstore;
+
+Write a SQL query that will show a statistc about the price for items in the category of 'Kitchen Supplies'.
+SELECT AVG (price), 'Kitchen Supplies'
+FROM superstore;
+
+Write a SQL query that will show the 'Furnishings' products that has a stock quantity less than 40 in ascending order.
+SELECT stock_quantity, item_name, 'Furnshngs'
+FROM superstore
+WHERE stock_quantity < 50
+ORDER BY stock_quantity asc;
