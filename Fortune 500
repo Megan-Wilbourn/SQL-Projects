@@ -1,0 +1,36 @@
+--What Fortune 500 companies have healthcare and more that more thatn 15 days of PTO.
+SELECT company_name
+FROM fortune_companies
+WHERE healthcare_benefits= 1 
+AND paid_time_off_days >= 15
+ORDER BY paid_time_off_days desc;
+
+--What is the average number of weeks do the fourtune 500 companies give.
+SELECT AVG(maternity_leave_weeks) as'Average Weeks Given for Maternity Leave'
+FROM fortune_companies;
+
+--Please find the average, minimum, and maxium amount of paid time days off. Then create categories and place the companies that have healthcare benefits, in them based on paid time days off
+SELECT AVG (paid_time_off_days), MIN(paid_time_off_days), MAX(paid_time_off_days)
+FROM fortune_companies;
+
+SELECT company_name, paid_time_off_days,
+CASE WHEN paid_time_off_days>= 19 THEN "More Than Average PTO"
+WHEN paid_time_off_days=18 THEN "Average PTO"
+WHEN paid_time_off_days>=12 THEN "Below Average PTO" 
+ELSE "Least PTO" END AS "PTO"
+FROM fortune_companies
+WHERE healthcare_benefits=1
+GROUP by paid_time_off_days;
+
+--Find the companies wth a sum of revenue that is greater than or equal to 200 and they also have health benefits.
+SELECT company_name,SUM(revenue) AS Revenue
+FROM fortune_companies
+WHERE healthcare_benefits=1
+HAVING revenue >=200;
+
+--Please find the companies that are n tech wth health benefits and more than or equal to 18.
+SELECT company_name,paid_time_off_days
+FROM fortune_companies
+WHERE industry='Technology'
+AND paid_time_off_days>=18
+AND healthcare_benefits=1;
