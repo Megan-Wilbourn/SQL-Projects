@@ -1,0 +1,112 @@
+--1.What artists are in the top 50 without repeats.
+SELECT DISTINCT artist_name
+FROM Spotifydata
+ORDER BY artist_name ASC;
+--2.Create a list of the artists and their songs and the popularity listed in ascending. 
+SELECT
+Popularity
+,artist_name
+,track_name
+FROM Spotifydata
+ORDER BY popularity ASC;
+--3.What is the energy level of energy in the 10 most popular songs
+SELECT
+id
+,artist_name
+,track_name
+,popularity
+,energy
+FROM Spotifydata
+ORDER BY popularity desc
+LIMIT 10;
+--4.Show a list of the artists,track,song mode, and key where the song mode is 1 and the song key is greater than or equal to 6 with the artists name in alphabetical order. 
+SELECT
+id
+,artist_name
+,track_name
+,song_mode
+,song_key
+FROM Spotifydata
+WHERE song_mode='1'
+OR song_key >=6
+ORDER BY id ASC
+--5.In the dataset what artist were the 10 least popular ordered by least to most popular?
+SELECT 
+id
+,artist_name
+,popularity
+FROM Spotifydata
+ORDER BY popularity
+LIMIT 10;
+--6..Who are the top 10 most popular artist an songs. 
+SELECT 
+id
+,artist_name
+,track_name
+,popularity
+FROM Spotifydata
+ORDER BY popularity desc
+LIMIT 10
+--7.Create categorizorys based on the popularity of the songs based on the average.
+SELECT 
+id
+,artist_name
+,track_name
+,popularity
+CASE
+WHEN popularity >= 87 THEN “more_than_average_popularity”
+WHEN popularity >= 84 THEN “average_level_popularity”
+WHEN popularity >= 67 THEN “below_average_popularity”
+END AS “Popularity Level”
+FROM Spotifydata
+--8.Which songs and their artist have a song that is n the top ten based on popularity that is above average in dancibility?
+SELECT
+Id
+,artist_name
+,track_name
+,dancibility
+FROM Spotifydata 
+WHERE popularity >=92
+AND danceability >= 0.68
+ORDER BY danceability
+
+--9.How many songs in the last 10 that had a dancibility level average or more?
+SELECT
+Id
+,artist_name
+,track_name
+,popularity 
+FROM spotifydata
+WHERE popularity <=84 
+AND danceability .=0.68;
+
+--10.Which songs have above average in danceability ,energy,loudness,liveness,and tempo?
+SELECT 
+Id
+,artist_name
+,track_name
+,popularty
+FROM Spotifydata
+WHERE danceability >= 0.68
+AND energy >=0.64
+AND livilness >0.18
+AND temp >120.96
+
+
+--11.What songs are above average n accousticesness and in the top 10 most popularly songs.
+SELECT
+id
+,artist_name
+,track_name
+FROM Spotifydata
+WHERE popularity >=92
+AND acousticness >=0.25;
+
+--12.How many songs that are in the top average popularity are also n average or above average in duraction_ms
+SELECT 
+id
+,artist_name
+,track_name
+FROM Spotifydata
+WHERE popularity >= 86.75
+AND duraton_ms >=198049.25;
